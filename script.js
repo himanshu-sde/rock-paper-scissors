@@ -79,9 +79,29 @@ function printResult(result) {
   }
 }
 
-// program flow
+function updateScore(result) {
+  if (result == "Human") {
+    humanScore++;
+  } else if (result == "Computer") {
+    computerScore++;
+  }
+}
 
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
-let result = playRound(humanSelection, computerSelection); // returns string Tie,Computer,Human
-printResult(result);
+// program flow
+let humanScore = 0;
+let computerScore = 0;
+
+while (humanScore < 5 && computerScore < 5) {
+  let humanSelection = getHumanChoice();
+  let computerSelection = getComputerChoice();
+  let result;
+  result = playRound(humanSelection, computerSelection); // returns string Tie,Computer,Human
+  printResult(result);
+  updateScore(result);
+  console.log(`HUMANS:${humanScore} :: COMPUTER:${computerScore}`);
+}
+if (humanScore == 5) {
+  console.log("HUMANITY HAS PREVAILED!");
+} else {
+  console.log("SILICONS HAVE CRUSHED HUMANS!");
+}
